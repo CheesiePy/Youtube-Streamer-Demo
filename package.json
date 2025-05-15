@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "http:Cheesiepy.github.io/youtube-streamer-demo",
+  "homepage": "http://Cheesiepy.github.io/youtube-streamer-demo",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
