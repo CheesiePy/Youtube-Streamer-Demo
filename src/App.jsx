@@ -7,12 +7,8 @@ import VideoPlayer   from './components/VideoPlayer'
 export default function App() {
   useEffect(() => {
     const onKeyDown = (e) => {
-      // this is a webOS specific function to close the app
-      // it’s not part of the web standard
-      // and it’s not available in the browser
-      if (e.which === 461 && parent.webOS && typeof parent.webOS.platformBack === 'function') {
-        parent.webOS.platformBack()
-      }
+      // alart the key pressed and the key code
+      alert(`Key pressed: ${e.key}, Key code: ${e.keyCode}`)
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
