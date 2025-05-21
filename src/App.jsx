@@ -1,21 +1,39 @@
 // src/App.jsx
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import VideoSelector from './components/VideoSelector'
 import VideoPlayer   from './components/VideoPlayer'
 
 export default function App() {
+  // track whether any key is currently pressed
+  const [isKeyPressed, setIsKeyPressed] = useState(false)
+
   useEffect(() => {
-    const onKeyDown = (e) => {
-      // alart the key pressed and the key code
-      alert(`Key pressed: ${e.key}, Key code: ${e.keyCode}`)
+    const handleKeyDown = () => {
+      // when a key goes down, show the button
+      setIsKeyPressed(true)
     }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+    const handleKeyUp = () => {
+      // when the key is released, hide the button
+      setIsKeyPressed(false)
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keyup', handleKeyUp)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('keyup', handleKeyUp)
+    }
   }, [])
 
   return (
     <div className="app-container">
+      {isKeyPressed && (
+        <button className="key-pressed-button">
+          key is pressed
+        </button>
+      )}
       <VideoSelector />
       <VideoPlayer />
     </div>
